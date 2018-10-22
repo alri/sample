@@ -1,0 +1,25 @@
+{
+    "name":             "alri/test",
+    "description":      "this is test package for laravel 5.5.",
+    "version":          "1.0",
+    "keywords":         ["larave", "test", "alri"],
+    "homepage":         "http://baraban.ir",
+    "license":          "MIT",
+    "authors": [
+        {
+            "name":         "Alireza Abyari",
+            "email":        "info.alri@gmail.com",
+            "homepage":     "http://baraban.ir",
+        }
+    ],
+	"require": {
+        	"php": ">=7.0.0",
+        	"laravel/framework": "5.5.*",	
+	},
+
+	"autoload": {
+        	"psr-4": {
+	   		 "Alri\\Test\\":"src/"
+        	}
+    	},
+}
