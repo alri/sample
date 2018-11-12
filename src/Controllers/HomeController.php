@@ -63,9 +63,10 @@ class HomeController extends Controller
           if ($request->ajax() || $request->wantsJson())
          {
              $data=[
-                 'errors'=>$errors,
+                 'type'=>'error',
                  'message'=>'request is fail',
-                 'status'=>'422'
+                 'status'=>422
+                 'errors'=>$errors,
              ]
               return response()->json($data,422);
          }else
@@ -94,9 +95,10 @@ class HomeController extends Controller
         if ($request->ajax() || $request->wantsJson())
         {
             $data=[
-                'user'=>$user,
+                'type'=>'success',
                 'message'=>'عملیات با موفقیت انجام شد',
                 'status'=>200,
+                'user'=>$user,
             ];
             return response()->json($data,200);
         }else{
