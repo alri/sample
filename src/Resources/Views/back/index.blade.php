@@ -14,8 +14,14 @@
 
 @section('content')
 
-<div>
-  ... Package Test . View is Ready
+<div class="row">
+    <div class="cell-md-12">
+        <h2>Index View</h2>
+    </div>
 </div>
+@endsection
+
+@section('script')
+	@parent
 
 @endsection

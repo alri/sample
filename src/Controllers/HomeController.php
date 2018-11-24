@@ -71,8 +71,8 @@ class HomeController extends Controller
               return response()->json($data,422);
          }else
           {
-              $request->session()->flash('MySessionErrors',$errors);
-              return redirect()->route('Alri\Test::back.home.create');
+              $request->session()->flash('TestErrors',$errors);
+              return redirect()->route('test.create.routeName');
           }
           
         }
