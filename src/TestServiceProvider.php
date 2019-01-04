@@ -34,13 +34,13 @@ class TestServiceProvider extends ServiceProvider
 
 	    //------ publish Views
 	    $this->publishes([
-       		 __DIR__.'/Resources/Views' => resource_path('views/vendor/alri/test'),
-    		]);
+       		 __DIR__.'/Resources/Views/front' => resource_path('views/vendor/alri/test'),
+        ],'view');
 
       //----- publish Configs
        $this->publishes([
             __DIR__.'/Config/package.php' => config_path('alri.test.package.php'),
-        ]);
+       ],'config');
 
         //-- publish asset
         $this->publishes([

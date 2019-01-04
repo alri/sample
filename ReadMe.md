@@ -57,12 +57,19 @@ Run Migration for DB Setup :
 
 
 **5**
-Pulish Vendors
+Pulish Public Asset & View
 
 ```
 php artisan vendor:publish --tag=public --force
+php artisan vendor:publish --tag=view --force
+php artisan vendor:publish --tag=config --force
 ```
 
+or publish with spesific package
+
+```
+php artisan vendor:publish --provider="Alri\Test\TestServiceProvider" --tag=view --force
+```
 
 
 **6**

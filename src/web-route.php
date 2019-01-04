@@ -6,10 +6,16 @@
 Route::prefix('package/test')->middleware(['web'])->group(function() {
 
 //--- test config
-	Route::get('/',function(){
-			$name=config('TestPackage.name');
-			return('Package Name Is : '.$name.'<br>'.'And Its Work Fine !!!');
-		});
+	Route::get('/info',function(){
+		$name=config('BlogPackage.name');
+		$sub=(config('BlogPackage.subpackages'));
+		echo('Package Name Is : '.$name.'<br><br>');
+		echo('Sub Packages : '."<br>");
+		foreach($sub as $item)
+		{
+			echo($item."<br>");
+		}
+	});
 
 		//----- test view
 		Route::get('/view',function(){
