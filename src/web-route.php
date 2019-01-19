@@ -3,12 +3,12 @@
 //------------------------------
 //---------- Web Routes
 //-------------------------------
-Route::prefix('package/test')->middleware(['web'])->group(function() {
+Route::prefix('package/sample')->middleware(['web'])->group(function() {
 
 //--- test config
 	Route::get('/info',function(){
-		$name=config('BlogPackage.name');
-		$sub=(config('BlogPackage.subpackages'));
+		$name=config('SamplePackage.name');
+		$sub=(config('SamplePackage.subpackages'));
 		echo('Package Name Is : '.$name.'<br><br>');
 		echo('Sub Packages : '."<br>");
 		foreach($sub as $item)
@@ -19,14 +19,14 @@ Route::prefix('package/test')->middleware(['web'])->group(function() {
 
 		//----- test view
 		Route::get('/view',function(){
-			return view("Alri\Test::back.index");
+			return view("Alri\Sample::back.index");
 		});
 
 		//------ controller check
-		Route::get('/controller','Alri\Test\Controllers\HomeController@index');
+		Route::get('/controller','Alri\Sample\Controllers\HomeController@index');
 
 		//------ model check
-		Route::get('/model','Alri\Test\Controllers\HomeController@dbCheck');
+		Route::get('/model','Alri\Sample\Controllers\HomeController@dbCheck');
 
 	//------- middleware check
 	Route::get('/middleware',function(){
@@ -47,7 +47,7 @@ Route::prefix('package/test')->middleware(['web'])->group(function() {
 //-------------------------------
 Route::prefix('package/test/test')->middleware(['web'])->group(function() {
 
-		Route::get('/','Alri\Test\Controllers\Tests\TestController@index');
-		Route::get('/show','Alri\Test\Controllers\Tests\TestController@show');
+		Route::get('/','Alri\Sample\Controllers\Tests\TestController@index');
+		Route::get('/show','Alri\Sample\Controllers\Tests\TestController@show');
 
  });

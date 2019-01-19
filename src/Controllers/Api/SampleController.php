@@ -1,6 +1,6 @@
 <?php
 
-namespace Alri\Test\Controllers\Api;
+namespace Alri\Sample\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Alri\Management\Models\Admin;
 use \Firebase\JWT\JWT;
 
 
-class HomeController extends Controller
+class SampleController extends Controller
 {
     /**
      * Create a new controller instance.

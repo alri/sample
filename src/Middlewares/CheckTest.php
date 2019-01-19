@@ -1,6 +1,6 @@
 <?php
 
-namespace Alri\Test\Middlewares;
+namespace Alri\Sample\Middlewares;
 
 use Closure;
 

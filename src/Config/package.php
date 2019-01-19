@@ -1,11 +1,11 @@
 <?php
 
 return [
-	'name' => 'test',
+	'name' => 'sample',
 	'subpackages'=>[
-		"test1","test2"
+		"sample1","sample2"
 	],
 	'env'=>'local',
-	'description' => 'laravel test package',
+	'description' => 'laravel sample package',
 ];
 

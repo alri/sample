@@ -1,5 +1,5 @@
 <?php
-namespace Alri\Test\Facades ;
+namespace Alri\Sample\Facades ;
 
 use Illuminate\Support\Facades\Facade;
 

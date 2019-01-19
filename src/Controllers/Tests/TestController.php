@@ -1,6 +1,6 @@
 <?php
 
-namespace Alri\Management\Controllers\Tests;
+namespace Alri\Sample\Controllers\Tests;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

@@ -1,5 +1,5 @@
 <?php
-namespace Alri\Test\Lib ;
+namespace Alri\Sample\Lib ;
 class Dog
 {
     public function woof()

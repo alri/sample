@@ -1,4 +1,4 @@
-# Welcome to Test Package !
+# Welcome to Sample Package !
 
 # About
 **this package is Laravel 5.* Package and Developed By Alireza Abbyari : Alri .**
@@ -17,7 +17,7 @@ OR
 Install via composer with version - edit your composer.json to require the package.
 ```
 "require": {
-    "alri/test": "1.*"
+    "alri/sample": "1.*"
 }
 ```
 Then run composer update in your terminal
@@ -27,14 +27,14 @@ Then run composer update in your terminal
  add service provider to **config/app.php**
 
 ```
-Alri\Test\TestServiceProvider::class,
+Alri\Sample\SampleServiceProvider::class,
 ```
 
 **2**
 if we have facade in package add this to aliases in **config/app.php**
 
 ```
-'Dog'=> Alri\Test\Facades\Dog::class,
+'Dog'=> Alri\Sample\Facades\Dog::class,
 ```
 
 
@@ -43,7 +43,7 @@ Add **Middleware** to **kernel.php** in app/Http/Kernel.php
 
 ```
 protected $routeMiddleware = [
-'CheckTest'=>\Alri\Test\Middlewares\CheckTest::class,
+'CheckTest'=>\Alri\Sample\Middlewares\CheckTest::class,
 ];
 ```
 
@@ -68,7 +68,7 @@ php artisan vendor:publish --tag=config --force
 or publish with spesific package
 
 ```
-php artisan vendor:publish --provider="Alri\Test\TestServiceProvider" --tag=view --force
+php artisan vendor:publish --provider="Alri\Sample\SampleServiceProvider" --tag=view --force
 ```
 
 
@@ -76,7 +76,7 @@ php artisan vendor:publish --provider="Alri\Test\TestServiceProvider" --tag=view
 [*optional*] Run Seeder with class name
 
 ```
-php artisan db:seed --class=Alri\\Test\\Seeds\\AlriTestPackageTableSeeder
+php artisan db:seed --class=Alri\\Sample\\Seeds\\AlriSamplePackageTableSeeder
 ```
 
 
@@ -93,7 +93,7 @@ add NameSpace and src to composer.json for local dev
 ```
 "psr-4": {
         "App\\": "app/",
-  "Alri\\Test\\":"packages/alri/test/src/"
+  "Alri\\Sample\\":"packages/alri/sample/src/"
     }
 ```
 
@@ -103,3 +103,13 @@ add NameSpace and src to composer.json for local dev
 
 
     composer dump-autoload -o
+
+**3**
+add serviceprovider to provider in config/app.php
+
+```
+   /*
+    * Package Service Providers...
+    */
+Alri\Sample\SampleServiceProvider::class,
+```

@@ -1,14 +1,14 @@
 <?php
 
-namespace Alri\Test\Seeds;
+namespace Alri\Sample\Seeds;
 
 use Illuminate\Database\Seeder;
 
 use Faker\Generator as Faker;
 use DB;
-use Alri\Test\Models\Test as Test;
+use Alri\Sample\Models\Sample as Sample;
 
-class AlriTestPackageTableSeeder extends Seeder
+class AlriSamplePackageTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class AlriTestPackageTableSeeder extends Seeder
     {
         //
 
-       $test= Test::create(array(
+       $sanple= Sample::create(array(
            'id'                 => 1,
            'name'              =>'alireza',
        ));

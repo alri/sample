@@ -1,11 +1,11 @@
 <?php
 
-namespace Alri\Test\Requests;
+namespace Alri\Sample\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TestRequest extends FormRequest
+class SampleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
