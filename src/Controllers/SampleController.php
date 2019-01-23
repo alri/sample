@@ -12,16 +12,6 @@ use Alri\Sample\Models\Test as Test;
 class SampleController extends Controller
 {
 
-    public function __construct()
-    {
-        //
-    }
-
-    public function showTestForm()
-    {
-      return view('Alri\Test::back.home.index');
-    }
-
     public function testInsert(Request $request)
     {
         //------------------------------------------
@@ -110,60 +100,106 @@ class SampleController extends Controller
         
     }
 
-    public function showCreateForm()
+   //-----------------------------
+   //--------- Sample Category CURD
+   //------------------------------
+   public function __construct()
     {
-      return view('Alri\Management::back.admin.create');
+        //
     }
 
-
-    //Example
-
-    public function create(AdminRequest $request)
+    public function showCreateForm()
     {
-              //-----------------------------
-             //----------- Get & Set  value
-             //------------------------------
-             $name=$request->input('txtName');
-             $username=$request->input('txtUserName');
-        
+        return view('Alri\Block::back.category.create');
+    }
 
-             //-----------------------------------------
-             //-------------  Work With Database
-             //-----------------------------------------
+    public function create(CategoryRequest $request)
+    {
+        // validation is ok
 
-            $admin= new Admin();
-               $admin->name=$name;
-               $admin->username=$username;
-            $admin->save();
+        //-----------------------------
+        //----------- Get & Set  value
+        //------------------------------
+        $name=$request->input('txtName');
 
-             //-----------------------------
-            //----------- Redirect To View With Session Message
-            //------------------------------
-             $request->session()->flash('AdminCreate','ادمین جدید به درستی اضافه شد');
-             return redirect()->route('management.admin.create');
+        //-----------------------------------------
+        //-------------  Work With Database
+        //-----------------------------------------
+        $category=new Category();
+            $category->name=$name;
+        $category->save();
+
+        //-----------------------------
+        //----------- Redirect To View With Session Message
+        //------------------------------
+        $request->session()->flash('BlockCategoryCreate','دسته بندی به درستی ایجاد شد');
+        return redirect()->route('block.category.create');
     }
 
     public function read()
     {
-      $admins=Admin::paginate(10);
-      $data=['admins'=>$admins];
-      return view('Alri\Management::back.admin.read',$data);
+      $categorys=Category::paginate(10);
+      $data=['categorys'=>$categorys];
+      return view('Alri\Block::back.category.read',$data);
     }
 
-    public function disable(Request $request)
+    public function showUpdateForm($id)
+    {
+        $category=Category::find($id);
+        if(isset($category))
+        {
+            $data=['category'=>$category];
+            return view('Alri\Block::back.category.update',$data);
+        }else 
+        {
+            abort(404);
+        }
+    }
+
+    public function update(CategoryRequest $request)
+    {
+       // validation is ok
+
+        //-----------------------------
+        //----------- Get & Set  value
+        //------------------------------
+        $name=$request->input('txtNameUpdate');
+        $id=$request->input('txtId');
+        //-----------------------------------------
+        //-------------  Work With Database
+        //-----------------------------------------
+        $category=Category::find($id);
+            $category->name=$name;
+        $category->save();
+
+        //-----------------------------
+        //----------- Redirect To View With Session Message
+        //------------------------------
+        $request->session()->flash('BlockCategoryUpdate','دسته بندی به درستی ویرایش شد');
+        return redirect()->route('block.category.update',['id'=>$id]);
+    }
+
+    public function delete(Request $request)
     {
         if ($request->ajax() || $request->wantsJson())
        {
 
          //------ get data
          $id=$request->input('txtId');
-         $status=$request->input('txtStatus');
 
          //------ work with DB
-         Admin::where('id','=',$id)->update(['status'=>$status]);
+        $category=Category::find($id);
+        $category->delete();
 
          //------ return JSON Object Response
-        return response()->json(['success'=>'عملیات به درستی انجام شد','id'=>$id]);
+         $data=[
+            'type'=>'success',
+            'message'=>'عملیات با موفقیت انجام شد',
+            'status'=>200,
+            'id'=>$id,
+        ];
+        return response()->json($data,200);
        }
     }
+
 }
