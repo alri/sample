@@ -101,7 +101,7 @@ class SampleController extends Controller
     }
 
    //-----------------------------
-   //--------- Sample Category CURD
+   //--------- Sample Content CURD
    //------------------------------
    public function __construct()
     {
@@ -110,89 +110,76 @@ class SampleController extends Controller
 
     public function showCreateForm()
     {
-        return view('Alri\Block::back.category.create');
+        $categorys=Category::get();
+        $data=['categorys'=>$categorys];
+        return view('Alri\Block::back.content.create',$data);
     }
 
-    public function create(CategoryRequest $request)
+    public function create(ContentRequest $request)
     {
         // validation is ok
 
         //-----------------------------
         //----------- Get & Set  value
         //------------------------------
-        $name=$request->input('txtName');
+        $categoryId=$request->input('txtCategory');
+        $title=$request->input('txtTitle');
+        $content=$request->input('txtContent');
+        $status="غیرفعال";
 
         //-----------------------------------------
         //-------------  Work With Database
         //-----------------------------------------
-        $category=new Category();
-            $category->name=$name;
-        $category->save();
+        //----or
+        $record= new Content([
+            'title'=>$title,
+            'status'=>$status,
+            'content'=>$content,
+        ]);
+
+        $category=Category::find($categoryId);
+        $category->content()->save($record);
+
+        /* ----or
+        $record= new Content(
+            $record->category_id=$categoryId;
+            $record->title=$title;
+            $record->status=$status;
+            $record->content=$content;
+        $record->save();
+        */
 
         //-----------------------------
         //----------- Redirect To View With Session Message
         //------------------------------
-        $request->session()->flash('BlockCategoryCreate','دسته بندی به درستی ایجاد شد');
-        return redirect()->route('block.category.create');
+        $request->session()->flash('BlockContentCreate','محتوا به درستی ایجاد شد');
+        return redirect()->route('block.content.create');
+        
     }
+
 
     public function read()
     {
-      $categorys=Category::paginate(10);
-      $data=['categorys'=>$categorys];
-      return view('Alri\Block::back.category.read',$data);
+      $contents=Content::paginate(10);
+      $data=['contents'=>$contents];
+      return view('Alri\Block::back.content.read',$data);
     }
 
-    public function showUpdateForm($id)
-    {
-        $category=Category::find($id);
-        if(isset($category))
-        {
-            $data=['category'=>$category];
-            return view('Alri\Block::back.category.update',$data);
-        }else 
-        {
-            abort(404);
-        }
-    }
 
-    public function update(CategoryRequest $request)
-    {
-       // validation is ok
-
-        //-----------------------------
-        //----------- Get & Set  value
-        //------------------------------
-        $name=$request->input('txtNameUpdate');
-        $id=$request->input('txtId');
-        //-----------------------------------------
-        //-------------  Work With Database
-        //-----------------------------------------
-        $category=Category::find($id);
-            $category->name=$name;
-        $category->save();
-
-        //-----------------------------
-        //----------- Redirect To View With Session Message
-        //------------------------------
-        $request->session()->flash('BlockCategoryUpdate','دسته بندی به درستی ویرایش شد');
-        return redirect()->route('block.category.update',['id'=>$id]);
-    }
-
-    public function delete(Request $request)
+    public function enable(Request $request)
     {
         if ($request->ajax() || $request->wantsJson())
        {
 
          //------ get data
          $id=$request->input('txtId');
+         $status=$request->input('txtStatus');
 
          //------ work with DB
-        $category=Category::find($id);
-        $category->delete();
+         Content::where('id','=',$id)->update(['status'=>$status]);
 
          //------ return JSON Object Response
-         $data=[
+        $data=[
             'type'=>'success',
             'message'=>'عملیات با موفقیت انجام شد',
             'status'=>200,
@@ -200,6 +187,73 @@ class SampleController extends Controller
         ];
         return response()->json($data,200);
        }
+
+    }
+
+
+    public function showUpdateForm($id)
+    {
+        $content=Content::find($id);
+        if(isset($content))
+        {
+            $data=['content'=>$content];
+            return view('Alri\Block::back.content.update',$data);
+        }else 
+        {
+            abort(404);
+        }
+    }
+
+    public function update(ContentRequest $request)
+    {
+       // validation is ok
+
+        //-----------------------------
+        //----------- Get & Set  value
+        //------------------------------
+        $title=$request->input('txtTitleUpdate');
+        $id=$request->input('txtId');
+        $content=$request->input('txtContent');
+     
+        //-----------------------------------------
+        //-------------  Work With Database
+        //-----------------------------------------
+        $record=Content::find($id);
+            $record->title=$title;
+            $record->content=$content;
+        $record->save();
+
+        //-----------------------------
+        //----------- Redirect To View With Session Message
+        //------------------------------
+        $request->session()->flash('BlockContentUpdate','دسته بندی به درستی ویرایش شد');
+        return redirect()->route('block.content.update',['id'=>$id]);
+    }
+
+
+
+    public function delete(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson())
+       {
+
+            //------ get data
+             $id=$request->input('txtId');
+
+            //------ work with DB
+            $content=Content::find($id);
+            $content->delete();
+
+           //------ return JSON Object Response
+            $data=[
+                'type'=>'success',
+                'message'=>'عملیات با موفقیت انجام شد',
+                'status'=>200,
+                'id'=>$id,
+            ];
+            return response()->json($data,200);
+       }
+       
     }
 
 }

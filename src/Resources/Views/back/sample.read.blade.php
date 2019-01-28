@@ -28,7 +28,7 @@
         <div class="success alert bg-green fg-white"></div>
         <div class="warning alert bg-red fg-white"></div>
 
-        <table class="table striped table-border row-hover  compact"  dir="rtl"  >
+        <table class="table striped table-border row-hover  compact"  dir="rtl" style="font-family:matn"  >
             <thead>
                 <th style="text-align:center">#</th>
                 <th style="text-align:center">نام</th>
@@ -103,7 +103,6 @@ $(document).ready(function () {
     ///////////// form1
     //#########################
     $('.form1').submit(function (e) {
-        //e.preventDefault();
 
         var address = "{{route('block.category.delete.submit')}}";
         var formData = new FormData(this);
