@@ -51,3 +51,11 @@ Route::prefix('package/test/test')->middleware(['web'])->group(function() {
 		Route::get('/show','Alri\Sample\Controllers\Tests\TestController@show');
 
  });
+
+
+//------------------------------
+//---------- Front Routes
+//-------------------------------
+Route::prefix('front/sample')->middleware(['web'])->group(function() {
+
+});
