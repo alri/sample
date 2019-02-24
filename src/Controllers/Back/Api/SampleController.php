@@ -1,6 +1,6 @@
 <?php
 
-namespace Alri\Sample\Controllers\Api;
+namespace Alri\Sample\Controllers\Back\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

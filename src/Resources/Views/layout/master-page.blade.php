@@ -13,7 +13,7 @@
     <title>@yield('title')</title>
 
     <!--  CSS -->
-    <link href="{{asset('vendor/alri/controlpanel/css//metro-all.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/alri/controlpanel/css/metro-all.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/alri/controlpanel/css/grid.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/alri/controlpanel/css/u-menu.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/alri/controlpanel/css/style.css')}}" rel="stylesheet">
