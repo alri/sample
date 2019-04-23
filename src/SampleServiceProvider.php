@@ -63,6 +63,6 @@ class SampleServiceProvider extends ServiceProvider
           );
 
         //--- bind libe class for using in Facades
-        $this->app->bind('Dog', 'Alri\Sample\Lib\Dog' );
+        $this->app->bind('Example', 'Alri\Sample\Lib\Example' );
     }
 }
