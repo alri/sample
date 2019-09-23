@@ -95,8 +95,8 @@
                 return{
                     message: 'hellow world',
                     model:'',
-                    routeName:'',
-                    csrfToken:'',
+                    route:'',
+                    csrf:'',
                 }
               },
              created:function(){

@@ -21,7 +21,7 @@ class SampleController extends Controller
         //----------- Form Request Validation
 
         //------------------------------------------
-        //----------- Handly Validation
+        //----------- Handly Validation for http & ajax
         //-------------------------------------------
         $rules= [
           'txtName'=>'required',
@@ -33,7 +33,7 @@ class SampleController extends Controller
           'txtFamily.required'=>'پر کردن فیلد رمز عبور الزامی است',
         ];
 
-        Validator::make($request->all(),$rules,$customMessages)->validate();
+        Validator::make($request->all(),$rules,$errorMessages)->validate();
 
 
         //---------------------------------------
@@ -44,10 +44,13 @@ class SampleController extends Controller
         //--------------------------------------
         //-------------  Server Side Validation With DB
         //--------------------------------------
-        
-        $errors=array();
-        array_push($errors,"این رکورد قبلا ایجاد شده است");
-        if(!empty($errors))
+        foreach($orderItems as $item)
+        {
+            
+        }
+        $error="";
+       
+        if(!empty($error))
         {
           //--- send ajax json & http response
           if ($request->ajax() || $request->wantsJson())
@@ -56,9 +59,9 @@ class SampleController extends Controller
                  'type'=>'error',
                  'message'=>'request is fail',
                  'status'=>422,
-                 'errors'=>$errors,
+                 'error'=>$error,
              ];
-              return response()->json($data,422);
+              return response()->json($data,200);
          }else
           {
               $request->session()->flash('TestErrors',$errors);

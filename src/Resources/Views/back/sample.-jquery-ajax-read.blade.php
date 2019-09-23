@@ -105,16 +105,13 @@ $(document).ready(function () {
     $('.form1').submit(function (e) {
 
         var address = "{{route('block.category.delete.submit')}}";
-        var formData = new FormData(this);
+        //var formData = new FormData(this);
 
         $.ajax({
             type: "POST",
             url: address,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-
+            data: $('#form1').serialize(),
+          
             success: function (data) {
                 if ($.isEmptyObject(data.error)) {
                     //alert(data.success);
@@ -129,7 +126,7 @@ $(document).ready(function () {
                     $.each(data.error, function (key, value) {
                         //console.log(value)
                         $('.warning').show();
-                        $('.warning').append('<i class="fas fa-arrow-left"></i>&nbsp;&nbsp;' + value + '<br>');
+                        $('.warning').append('<i class="fas fa-exclamation"></i>&nbsp;&nbsp;' + value + '<br>');
                     });
                 }
             },
@@ -151,6 +148,9 @@ $(document).ready(function () {
    //hide alert elements
    //--------------------------------
  $(document).ready(function () {
+
+    $(".alert").hide()
+
         $('.alert').click(function (e) {
 
             $(".alert").empty();
@@ -161,13 +161,6 @@ $(document).ready(function () {
 
 </script>
 
-
-<script type="text/javascript">
-    function showPopup(url) {
-        newwindow=window.open(url,'name','height=500,width=250,top=100,left=300,resizable');
-        if (window.focus) {newwindow.focus()}
-      }
-</script>
 
 
 @endsection
